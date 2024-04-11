@@ -1,0 +1,8 @@
+apiVersion: v2
+name: cert-manager-config
+description: Chart installing custom resources for cert-manager
+version: 1.0.0
+maintainers:
+  - name: Kalisio
+    email: contact@kalisio.com
+    url: https://kalisio.com

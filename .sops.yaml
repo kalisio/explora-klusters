@@ -1,0 +1,17 @@
+# This file is only used to _encrypt_ secrets. It defines who will be able to decrypt the secrets.
+# Each recipîent is the public key of an allowed developer.
+# For reference:
+#   - robin:      age1q8x3cqsjg3cvmzfttawdx20s8zm62ngtna0lnq6ehz9xwf2gq4xs56ap6a
+#   - luc:        age1ver3xrdzljpy2q6trgcf46mek3qsvtvzurv48hjkwfsg7ndf5p0s6hvztr
+#   - christophe: age19mhzgawz054672rhsjs7654u6455jggghs2kur52zmykaap9wdgq34zw3u
+#   - tristan:    age1mh5vmdxplyuzzc4pqld84rksqt7t5w693l9r3kvusya4gncjuy3qzgcuvq
+#   - nicolas:    age1ww7j7n3rw37tva4gvrc5n0ldnd0nwrqcxtkasnmrhj38zsymsuusasadyn
+creation_rules:
+  # recipients for everything else
+  - age: >
+      age1q8x3cqsjg3cvmzfttawdx20s8zm62ngtna0lnq6ehz9xwf2gq4xs56ap6a,
+      age1ver3xrdzljpy2q6trgcf46mek3qsvtvzurv48hjkwfsg7ndf5p0s6hvztr,
+      age19mhzgawz054672rhsjs7654u6455jggghs2kur52zmykaap9wdgq34zw3u
+  # - path_regex: .*.(yaml|yml)
+  #   encrypted_regex: ^(data|stringData)$
+  #   age: ''

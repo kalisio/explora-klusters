@@ -1,0 +1,71 @@
+# Declare required helm repositories here
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+
+releases:
+  # nginx ingress controller
+  # https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+  # https://github.com/kubernetes/ingress-nginx/#supported-versions-table
+  # https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-install-nginx-ingress?id=kb_article_view&sysparm_article=KB0049850
+  - name: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    namespace: ingress-nginx
+    version: 4.10.0
+  # cert-manager
+  # https://cert-manager.io/docs/installation/helm/
+  # https://cert-manager.io/docs/installation/supported-releases/
+  - name: cert-manager
+    chart: jetstack/cert-manager
+    namespace: cert-manager
+    version: v1.14.4
+    values:
+      # https://cert-manager.io/docs/installation/helm/#crd-installation-advice
+      - installCRDs: true
+      - prometheus:
+          enabled: false
+  # Configuration files for cert-manager (prod & staging issuers)
+  - name: cert-manager-config
+    chart: cert-manager-config
+    namespace: cert-manager
+    version: 1.0.0
+    needs:
+      - cert-manager
+  # monitoring stack
+  # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+  # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#prerequisites
+  - name: kube-prometheus-stack
+    chart: prometheus-community/kube-prometheus-stack
+    namespace: monitoring
+    version: 58.0.0
+    # values:
+    #   - grafana:
+    #       # Expose using ingress and use TLS
+    #       ingress:
+    #         enabled: true
+    #         ingressClassName: nginx
+    #         hosts:
+    #           - grafana.prod.kalisio.xyz
+    #         tls:
+    #           - hosts:
+    #               - grafana.prod.kalisio.xyz
+    #             secretName: grafana.prod.kalisio.xyz
+    #         annotations:
+    #           cert-manager.io/cluster-issuer: letsencrypt-prod
+    #       # These are what the chart 'grafana-config' deploys
+    #       # Defines admin user & password
+    #       admin:
+    #         existingSecret: grafana-config-secret
+    #         userKey: grafana-admin-user
+    #         passwordKey: grafana-admin-password
+    #       env:
+    #         GF_SERVER_ROOT_URL: 'https://grafana.prod.kalisio.xyz'
+    #         GF_AUTH_GENERIC_OAUTH_ENABLED: true
+    #         GF_AUTH_GENERIC_OAUTH_SCOPES: 'openid email profile roles'
+    #         # search for role in 'grafana_roles' claim
+    #         GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(grafana_roles[*], 'admin') && 'Admin' || contains(grafana_roles[*], 'editor') && 'Editor' || 'Viewer'"
+    #       envFromSecret: grafana-ini-secret
