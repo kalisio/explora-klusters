@@ -1,0 +1,56 @@
+# Declare required helm repositories here
+repositories:
+  - name: bitnami
+    # This points on a truncated index, only keeps 6 months of history
+    # url: https://charts.bitnami.com/bitnami
+    # This is a kalisio mirror of the full index (hosted on github, subject to rate limits)
+    url: https://storage.gra.cloud.ovh.net/v1/AUTH_f84d8656afc74fdc8667e50a8f72faff/charts/bitnami-full
+  - name: kalisio
+    oci: true
+    url: harbor.portal.kalisio.com/kalisio/helm
+
+helmDefaults:
+  historyMax: 3
+
+# Values listed here will be available in _helmfile_ templates
+values:
+  - global.yaml
+  - namespace: {{ .Namespace }}
+
+# This factorize reusable definitions
+templates:
+  # Definitions shared by stuff installed through 'kaptain install'
+  #  - namespace
+  #  - where to lookup release values.yaml
+  #  - adds values from global.yaml
+  #  - selector label
+  #  - install _after_ provision-configs
+  install: &install
+    namespace: {{ .Values.namespace }}
+    values:
+      - configs/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+      - global.yaml
+    set:
+      - name: global.secret
+        value: {{ .Values.namespace }}
+    labels:
+      action: install
+    needs:
+      - provision-configs
+
+releases:
+  # This chart is _always_ installed first
+  - name: provision-configs
+    chart: provision-configs
+    namespace: {{ .Values.namespace }}
+    values:
+      - global.yaml
+      - secret.dec.yaml
+      - configs/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+    labels:
+      action: config
+    hooks:
+      - events: [ "prepare" ]
+        showlogs: true
+        command: "./hooks.sh"
+        args: [ '{{`{{ .Release.Name }}`}}' ]

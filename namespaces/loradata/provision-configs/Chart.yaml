@@ -1,0 +1,12 @@
+apiVersion: v2
+name: provision-configs
+description: Chart to provision configs on the namespace
+version: 1.0.0
+dependencies:
+  - name: kargo
+    version: 1.0.5
+    repository: oci://harbor.portal.kalisio.com/kalisio/helm
+maintainers:
+  - name: Kalisio
+    email: contact@kalisio.com
+    url: https://kalisio.com

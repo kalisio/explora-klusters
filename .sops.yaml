@@ -6,12 +6,14 @@
 #   - christophe: age19mhzgawz054672rhsjs7654u6455jggghs2kur52zmykaap9wdgq34zw3u
 #   - tristan:    age1mh5vmdxplyuzzc4pqld84rksqt7t5w693l9r3kvusya4gncjuy3qzgcuvq
 #   - nicolas:    age1ww7j7n3rw37tva4gvrc5n0ldnd0nwrqcxtkasnmrhj38zsymsuusasadyn
+#   - romain:     age1sqmexpjld39kv4wl90t5yaaej0mf08mq0leg3fe6elwz47l9f9zs357j58
 creation_rules:
   # recipients for everything else
   - age: >
       age1q8x3cqsjg3cvmzfttawdx20s8zm62ngtna0lnq6ehz9xwf2gq4xs56ap6a,
       age1ver3xrdzljpy2q6trgcf46mek3qsvtvzurv48hjkwfsg7ndf5p0s6hvztr,
-      age19mhzgawz054672rhsjs7654u6455jggghs2kur52zmykaap9wdgq34zw3u
+      age19mhzgawz054672rhsjs7654u6455jggghs2kur52zmykaap9wdgq34zw3u,
+      age1sqmexpjld39kv4wl90t5yaaej0mf08mq0leg3fe6elwz47l9f9zs357j58
   # - path_regex: .*.(yaml|yml)
   #   encrypted_regex: ^(data|stringData)$
   #   age: ''

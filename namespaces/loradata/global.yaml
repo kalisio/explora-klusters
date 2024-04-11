@@ -1,0 +1,3 @@
+global:
+  certIssuer: letsencrypt-prod
+  subdomain: loradata.kalisio.xyz
