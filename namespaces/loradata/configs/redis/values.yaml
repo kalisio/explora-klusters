@@ -1,0 +1,24 @@
+# redis values for minikube environment
+architecture: "standalone"
+
+auth:
+  password: 'TheRedisPwd!' 
+  
+# write options
+master:
+  extraFlags: 
+    - --save 300 1
+    - --save 60 100
+    - --appendonly no
+
+# resources options
+master:
+  resources:
+    requests:
+      cpu: "100m" 
+      memory: "128Mi" 
+      ephemeral-storage: "50Mi"
+    limites:
+      cpu: "150m" 
+      memory: "192Mi"
+      ephemeral-storage: "1024Mi"

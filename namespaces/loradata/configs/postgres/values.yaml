@@ -1,0 +1,33 @@
+# postgres values for minikube environment
+
+#default user and db
+auth:
+  postgresPassword: Root
+  username: chirpstack
+  password: chirpstack
+  database: chirpstack
+
+# persistance
+# 50 Mi are already taken at initial import for LoRaWAN devices
+# we don't use the postgres integration
+primary:
+  persistence:
+    size: 100Mi
+  # from the nano definition of the bitnami preset
+  # this is a demonstrator so nano is enough
+  resources:
+    requests:
+      cpu: "100m" 
+      memory: "128Mi" 
+      ephemeral-storage: "50Mi"
+    limits:
+      cpu: "150m" 
+      memory: "192Mi"
+      ephemeral-storage: "1024Mi"
+  initdb:
+    # required extensions for chirpstack
+    scripts:
+      001-chirpstack_extensions.sql: |
+        create extension pg_trgm;
+        create extension hstore;
+

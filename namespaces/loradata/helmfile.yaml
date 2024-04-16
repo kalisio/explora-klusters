@@ -54,3 +54,46 @@ releases:
         showlogs: true
         command: "./hooks.sh"
         args: [ '{{`{{ .Release.Name }}`}}' ]
+
+    # chirpstack
+  - name: postgres
+    namespace: {{ .Namespace }}
+    chart: bitnami/postgresql
+    labels:
+      action: install
+    values:
+      - configs/{{`{{ .Release.Name }}`}}/values.yaml
+      
+  - name: redis
+    namespace: {{ .Namespace }}
+    chart: bitnami/redis
+    labels:
+      action: install
+    values:
+      - configs/{{`{{ .Release.Name }}`}}/values.yaml
+
+  - name: mongodb
+    namespace: {{ .Namespace }}
+    labels:
+      action: install
+    chart: bitnami/mongodb
+    values:
+      -  configs/{{`{{ .Release.Name }}`}}/values.yaml
+
+  - name: chirpstack
+    namespace: {{ .Namespace }}
+    labels:
+      action: install
+    chart: kalisio/chirpstack  
+    version: 0.0.7
+    values:
+      -  configs/{{`{{ .Release.Name }}`}}/values.yaml
+
+  - name: kano
+    namespace: {{ .Namespace }}
+    chart: kalisio/kano
+    version: 1.1.0
+    values:
+      -  configs/{{`{{ .Release.Name }}`}}/values.yaml
+    labels:
+      action: install

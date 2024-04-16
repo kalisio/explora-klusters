@@ -1,0 +1,28 @@
+# redis values for minikube environment
+# create a single kano db for chirpstack user 
+
+# standalone archi
+architecture: "standalone" 
+arbiter.enabled: false
+useStatefulSet: "true" 
+
+# credentials
+auth:
+  rootPassword: 'myr007p455w0rd!'  
+  usernames: 
+    - 'chirpstack'
+  passwords:
+    - 'chirpstack'
+  databases: 
+    - 'kano'
+
+# resources
+resourcesPreset: small
+persistence:
+  resourcePolicy: "keep"
+  persistence.size: "1Gi"
+
+
+extraEnvVars:
+  - name: LOG_LEVEL 
+    value: error 
