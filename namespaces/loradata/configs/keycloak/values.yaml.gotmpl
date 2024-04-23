@@ -1,0 +1,36 @@
+# keycloak values
+global:
+  # subdomain to be used when computing the ingress host
+  subdomain: "loradata.kalisio.xyz"
+
+# use the existing postgresql
+postgresql:
+  enabled: false 
+externalDatabase:
+  host: postgres-postgresql
+  user: keycloak  
+  password: keycloak 
+  database: keycloak  
+  port: 5432 
+
+# external exposure
+service:
+    type: 
+        ClusterIP
+ingress:
+  enabled: true
+  ingressClassName: nginx  
+  tls: true
+  hostname: keycloak.loradata.kalisio.xyz
+
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+adminIngress:
+  enabled: true
+  hostname: keycloak-admin.loradata.kalisio.xyz
+
+auth:
+  adminPassword: MyAdmin
+  managementPassword: MyManager
+  clusterDomain: test

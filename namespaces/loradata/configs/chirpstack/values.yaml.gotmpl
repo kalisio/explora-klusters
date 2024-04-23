@@ -28,6 +28,17 @@ env:
     cesiumToken: ""
     grpc_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjaGlycHN0YWNrIiwiaXNzIjoiY2hpcnBzdGFjayIsInN1YiI6IjFmYWJlODdmLTQ5MmItNGEzOS1hM2Y0LTIyNzk2NWE2YTRiOSIsInR5cCI6ImtleSJ9.Dbs2_9X2fPlgu90iXIpPjt7YY5Qj7hOsVqv7l2Lxcms"    
 
+  
+  # keycloak
+  keycloak:
+    enabled: yes
+    client_id: k-keycloack-chirpstack
+    client_secret: Krmc0usoK9QDGtMvA1hSMxuGDh0cJkNy
+    provider_url_path: /realms/chirpstack
+    redirect_url_path: /auth/oidc/callback
+    logout_url_path: /realms/chirpstack/protocol/openid-connect/logout
+
+
 
 images:
   pullSecret: "kalisio-harbor"

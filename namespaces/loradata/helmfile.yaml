@@ -68,9 +68,14 @@ releases:
     chart: bitnami/mongodb
     <<: *install
 
+  - name: keycloak
+    chart: bitnami/keycloak
+    <<: *install
+
+
   - name: chirpstack
     chart: kalisio/chirpstack
-    version: 0.0.12
+    version: 0.0.15
     <<: *install
 
   - name: kano
