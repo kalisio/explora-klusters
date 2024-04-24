@@ -8,10 +8,12 @@ postgresql:
   enabled: false 
 externalDatabase:
   host: postgres-postgresql
-  user: keycloak  
-  password: keycloak 
+  user: keycloak    
   database: keycloak  
   port: 5432 
+  existingSecret: loradata  
+  existingSecretPasswordKey: keycloak-externaldb-password
+
 
 # external exposure
 service:
@@ -31,6 +33,7 @@ adminIngress:
   hostname: keycloak-admin.loradata.kalisio.xyz
 
 auth:
-  adminPassword: MyAdmin
-  managementPassword: MyManager
-  clusterDomain: test
+  existingSecret: loradata
+  passwordSecretKey: keycloak-admin-user  
+  
+  
