@@ -8,14 +8,12 @@ arbiter.enabled: false
 useStatefulSet: "true" 
 
 # credentials
-auth:
-  rootPassword: 'myr007p455w0rd!'  
+auth:  
   usernames: 
-    - 'chirpstack'
-  passwords:
-    - 'chirpstack'
+    - 'chirpstack'  
   databases: 
     - 'kano'
+  existingSecret: loradata
 
 # resources
 resourcesPreset: small
