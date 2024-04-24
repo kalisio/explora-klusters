@@ -1,4 +1,11 @@
-# chirpstack values for minikube environment
+# chirpstack values
+
+auth:
+  existingSecret: "loradata" 
+  existingSecretRedisPasswordKey: redis-password
+  existingSecretPostgresPasswordKey: postgres-user-password
+  existingSecretMongoPasswordKey: mongodb-passwords
+  existingSecretGRPCTokenKey: grpc_token
 
 global:
   # subdomain to be used when computing the ingress host
@@ -6,18 +13,15 @@ global:
   certIssuer: "letsencrypt-prod"
 
 env:  
-  fetch_lorawan_device: no
-  redis_password: VGhlUmVkaXNQd2Qh  # base 64 encoded
+  fetch_lorawan_device: no  
   postgres:
     host: postgres-postgresql 
     user: chirpstack
-    db: chirpstack
-    password: Y2hpcnBzdGFjaw== # base 64 encoded
+    db: chirpstack    
   
   mongodb:
     host: mongodb
-    user: chirpstack
-    password: chirpstack 
+    user: chirpstack    
     db: kano 
     clean: false # use for development purpose    
 
@@ -25,8 +29,7 @@ env:
   kano_integration:
     appSecret: "MyKanoSecret"
     mapillaryToken: ""
-    cesiumToken: ""
-    grpc_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjaGlycHN0YWNrIiwiaXNzIjoiY2hpcnBzdGFjayIsInN1YiI6IjFmYWJlODdmLTQ5MmItNGEzOS1hM2Y0LTIyNzk2NWE2YTRiOSIsInR5cCI6ImtleSJ9.Dbs2_9X2fPlgu90iXIpPjt7YY5Qj7hOsVqv7l2Lxcms"    
+    cesiumToken: ""    
 
   
   # keycloak
