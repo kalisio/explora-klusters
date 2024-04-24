@@ -3,7 +3,8 @@ architecture: "standalone"
 namespace: loradata
 
 auth:
-  password: 'TheRedisPwd!' 
+  existingSecret: "loradata"
+  existingSecretPasswordKey: "redis-password"
   
 # write options
 master:
