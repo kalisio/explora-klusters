@@ -1,8 +1,10 @@
 # postgres values for minikube environment
 namespace: loradata
 #default user and db
-auth:
-  postgresPassword: Root
+auth:  
+  existingSecret: "loradata"
+  secretKeys:
+    adminPasswordKey: "postgres-admin-password"    
 
 # persistance
 # 50 Mi are already taken at initial import for LoRaWAN devices
