@@ -6,6 +6,7 @@ auth:
   existingSecretPostgresPasswordKey: postgres-user-password
   existingSecretMongoPasswordKey: mongodb-passwords
   existingSecretGRPCTokenKey: grpc_token
+  existingSecretKeycloakClientSecretPasswordKey: keycloak-client-secret
 
 global:
   # subdomain to be used when computing the ingress host
@@ -35,8 +36,7 @@ env:
   # keycloak
   keycloak:
     enabled: yes
-    client_id: k-keycloack-chirpstack
-    client_secret: Krmc0usoK9QDGtMvA1hSMxuGDh0cJkNy
+    client_id: k-keycloack-chirpstack    
     provider_url_path: /realms/chirpstack
     redirect_url_path: /auth/oidc/callback
     logout_url_path: /realms/chirpstack/protocol/openid-connect/logout
