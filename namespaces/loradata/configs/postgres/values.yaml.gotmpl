@@ -25,16 +25,4 @@ primary:
       ephemeral-storage: "1024Mi"
   initdb:
     # create DB, users and extensions
-    scripts:      
-      002-keycloak.sql: |-
-        CREATE DATABASE keycloak;
-        \c keycloak;
-        CREATE USER keycloak WITH PASSWORD 'keycloak';
-        ALTER DATABASE keycloak OWNER TO keycloak;
-      001-chirpstack.sql: |-
-        CREATE DATABASE chirpstack;
-        \c chirpstack;
-        CREATE USER chirpstack WITH PASSWORD 'chirpstack';
-        ALTER DATABASE chirpstack OWNER TO chirpstack;
-        CREATE EXTENSION IF NOT EXISTS "pg_trgm";
-        CREATE EXTENSION IF NOT EXISTS "hstore";
+    scriptsSecret: loradata-postgres
