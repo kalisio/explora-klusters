@@ -1,0 +1,46 @@
+# chirpstack values for minikube environment
+
+global:
+  # subdomain to be used when computing the ingress host
+  subdomain: "test"
+  certIssuer: ""
+
+auth:
+  redis_password: TheRedisPwd!  
+  postgres_password: chirpstack 
+  mongodb_password: chirpstack 
+  grpc_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjaGlycHN0YWNrIiwiaXNzIjoiY2hpcnBzdGFjayIsInN1YiI6IjhhNjVjYmRhLTgyYzMtNGQ1MS05YzQ2LTBiN2NiMjU2MDRjOCIsInR5cCI6ImtleSJ9.JFal9wQB20pORaO8-ANffM1J8q-hozoj1r6pskohAKo"
+  # existingSecret: "mysecret" 
+  # existingSecretRedisPasswordKey: "myrediskey"
+  # existingSecretPostgresPasswordKey: "mypostgreskey"
+  # existingSecretMongoPasswordKey: "mymongokey"
+  # existingSecretGRPCTokenKey: "mytoeknkey"
+
+env:  
+  fetch_lorawan_device: no
+  
+  postgres:
+    host: postgres-postgresql 
+    user: chirpstack
+    db: chirpstack
+    
+  
+  mongodb:
+    host: mongodb
+    user: chirpstack
+    
+    db: kano 
+    clean: false # use for development purpose    
+
+  # require to generate the secret for Kano integration
+  kano_integration:
+    appSecret: "MyKanoSecret"
+    mapillaryToken: ""
+    cesiumToken: ""        
+
+  # keycloak
+  keycloak:
+    enabled: no
+
+images:
+  pullSecret: "kalisio-harbor"

@@ -1,0 +1,49 @@
+repositories:
+- name: bitnami
+  url: https://charts.bitnami.com/bitnami
+- name: kalisio
+  url: harbor.portal.kalisio.com/kalisio/helm
+  oci: true 
+
+# 2 environments:
+#  * minikube for development purpose
+#  * demonstrator for the first official demonstrator
+environments:
+  minikube:    
+  lorademo:
+    
+
+# 5 charts used: redis, postgres, mongodb ,chirpstack and Kano
+releases:
+ 
+- name: postgres
+  namespace: demonstrator
+  chart: bitnami/postgresql
+  values:
+    - helmfileconfig/{{`{{ .Environment.Name }}`}}/postgres.yaml
+     
+- name: redis
+  namespace: demonstrator
+  chart: bitnami/redis
+  values:
+    - helmfileconfig/{{`{{ .Environment.Name }}`}}/redis.yaml
+
+- name: mongodb
+  namespace: demonstrator
+  chart: bitnami/mongodb
+  values:
+    - helmfileconfig/{{`{{ .Environment.Name }}`}}/mongodb.yaml
+
+- name: chirpstack
+  namespace: demonstrator  
+  chart: kalisio/chirpstack  
+  version: 0.0.11 
+  values:
+    - helmfileconfig/{{`{{ .Environment.Name }}`}}/chirpstack.yaml
+
+- name: kano
+  namespace: demonstrator
+  chart: kalisio/kano
+  version: 1.1.0
+  values:
+    - helmfileconfig/{{`{{ .Environment.Name }}`}}/kano.yaml
