@@ -75,7 +75,7 @@ releases:
 
   - name: chirpstack
     chart: kalisio/chirpstack
-    version: 0.0.19
+    version: 0.0.20
     <<: *install
 
   - name: kano

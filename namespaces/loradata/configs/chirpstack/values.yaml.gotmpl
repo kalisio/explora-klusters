@@ -1,12 +1,13 @@
 # chirpstack values
 
 auth:
+  registration_enabled: yes
   existingSecret: "loradata" 
   existingSecretRedisPasswordKey: redis-password
   existingSecretPostgresPasswordKey: postgres-user-password
   existingSecretMongoPasswordKey: mongodb-passwords
   existingSecretGRPCTokenKey: grpc_token
-  existingSecretKeycloakClientSecretPasswordKey: keycloak-client-secret
+  existingSecretKeycloakClientSecretPasswordKey: keycloak-admin-password
 
 global:
   # subdomain to be used when computing the ingress host
