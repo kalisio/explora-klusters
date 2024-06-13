@@ -1,3 +1,5 @@
 global:
   certIssuer: letsencrypt-prod
-  subdomain: loradata.kalisio.xyz
+  subdomain: loradata.kalisio.xyz  
+  keycloakfqdn: keycloak.loradata.kalisio.xyz
+ 

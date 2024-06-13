@@ -1,0 +1,10 @@
+hostOverride: mongo-express
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: https://oauth.{{ .Values.global.subdomain }}/oauth2/auth
+    nginx.ingress.kubernetes.io/auth-signin: https://oauth.{{ .Values.global.subdomain }}/oauth2/start
+env:
+  meConfigMongodbEnableAdmin: false
+  meConfigMongodbUrl:
+    key: me-config-mongodb-url
+  

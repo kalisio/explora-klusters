@@ -23,7 +23,7 @@ ingress:
   enabled: true
   ingressClassName: nginx  
   tls: true
-  hostname: keycloak.loradata.kalisio.xyz
+  hostname: {{ .Values.global.keycloakfqdn }}
 
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -34,6 +34,6 @@ adminIngress:
 
 auth:
   existingSecret: loradata
-  passwordSecretKey: keycloak-admin-user  
+  passwordSecretKey: keycloak-admin-password  
   
   

@@ -1,0 +1,29 @@
+config:
+  clientID: oauth2-proxy
+  clientSecret: 8RuaKql9GSNo8mGlphfo2TAkceqrxMna
+extraArgs:
+  provider: keycloak-oidc
+  oidc-issuer-url: https://{{ .Values.global.keycloakfqdn }}/realms/chirpstack
+  redirect-url: https://oauth.{{ .Values.global.subdomain }}/oauth2/callback
+  email-domain: "*"
+  whitelist-domain: .{{ .Values.global.subdomain }}
+  cookie-domain: .{{ .Values.global.subdomain }}
+  cookie-expire: 1h
+  cookie-samesite: strict
+  session-cookie-minimal: true  
+  allowed-role: mongo_express
+service:
+  portNumber: 4180
+ingress:
+  enabled: true
+  className: nginx
+  path: /oauth2
+  hosts:
+    - oauth.{{ .Values.global.subdomain }}
+  tls:
+    - hosts:
+        - oauth.{{ .Values.global.subdomain }}
+      secretName: oauth.{{ .Values.global.subdomain }}-tls
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.global.certIssuer }}
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
