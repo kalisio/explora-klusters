@@ -2,10 +2,9 @@
 
 auth:
   registration_enabled: yes
-  existingSecret: "loradata" 
+  existingSecret: "loradata"
   existingSecretRedisPasswordKey: redis-password
   existingSecretPostgresPasswordKey: postgres-user-password
-  existingSecretMongoPasswordKey: mongodb-passwords
   existingSecretGRPCTokenKey: grpc_token
   existingSecretKeycloakClientSecretPasswordKey: keycloak-client-secret
 
@@ -14,35 +13,38 @@ global:
   subdomain: "loradata.kalisio.xyz"
   certIssuer: "letsencrypt-prod"
 
-env:  
-  fetch_lorawan_device: no  
+env:
+  fetch_lorawan_device: no
   postgres:
-    host: postgres-postgresql 
+    host: postgres-postgresql
     user: chirpstack
-    db: chirpstack    
-  
+    db: chirpstack
+
   mongodb:
     host: mongodb
-    user: chirpstack    
-    db: kano 
-    clean: false # use for development purpose    
+    user: chirpstack
+    db: kano
+    clean: false # use for development purpose
 
   # require to generate the secret for Kano integration
   kano_integration:
     appSecret: "MyKanoSecret"
     mapillaryToken: ""
-    cesiumToken: ""    
+    cesiumToken: ""
 
-  
+
   # keycloak
   keycloak:
     enabled: yes
-    client_id: k-keycloack-chirpstack    
+    client_id: k-keycloack-chirpstack
     provider_url_path: /realms/chirpstack
     redirect_url_path: /auth/oidc/callback
     logout_url_path: /realms/chirpstack/protocol/openid-connect/logout
 
-
+  # integration for mongodb
+  mongodb_integration:
+    enabled: yes
+    microserviceSecret: mongodb-integration-secret
 
 images:
   pullSecret: "kalisio-harbor"
